@@ -1,4 +1,4 @@
-let cardCount = 8;
+let cardCount = 24;
 let shuffleCard;
 let child = [];
 let count = 0;
@@ -23,7 +23,7 @@ window.onload = function () {
   let array = [];
 
   //**ペアの数字を生成**/
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < 12; i++) {
     array.push(i);
     array.push(i);
   }
@@ -121,7 +121,7 @@ function turn(e) {
   if (currentPlayer === 2) {
     currentPlayer = 0;
   }
-  if (pareCount === 4) {
+  if (pareCount === 12) {
     result();
     backTimer = setTimeout(function () {
       alert(`終了です。${result()}`);
