@@ -46,7 +46,6 @@ window.onload = function () {
 
 button.addEventListener("click", function () {
   window.location.reload;
-  console.log("SSSSSSSSSSSs"); //明日きく
 });
 //**配列のシャッフル**/
 const shuffle = ([...array]) => {
