@@ -39,13 +39,13 @@ window.onload = function () {
     div.className = "card back";
     div.number = array[i];
     div.innerHTML = "";
-    div.onclick = turn;
+    div.addEventListener("click", turn);
     panel.appendChild(div);
   }
 };
 
 button.addEventListener("click", function () {
-  window.location.reload;
+  window.location.reload();
 });
 //**配列のシャッフル**/
 const shuffle = ([...array]) => {
@@ -68,11 +68,12 @@ const result = () => {
 };
 
 function turn(e) {
+  count += 1;
   let card = e.target;
   let num = card.number;
-  card.className = "card";
+  card.className = "card none";
   card.innerHTML = num;
-  count += 1;
+
   if (currentPlayer === 2) {
     currentPlayer = 1;
   }
@@ -92,10 +93,10 @@ function turn(e) {
         player2.textContent = `Player2:${player2Point}`;
       }
       backTimer = setTimeout(function () {
-        card.className = "card finish";
-        html.className = "card finish";
+        card.className = "card finish none";
+        html.className = "card finish none";
+        count = 0;
       }, 500);
-      count = 0;
       selectCard = [];
       pareCount++;
     } else {
@@ -104,13 +105,19 @@ function turn(e) {
         html.className = "card back";
         card.innerHTML = "";
         html.innerHTML = "";
+        count = 0;
       }, 500);
-      count = 0;
       selectCard = [];
       currentPlayer++;
       nextPlayer.textContent = `次はPlayer${currentPlayer}の番です`;
     }
+  } else {
+    card.className = "card back";
+    html.className = "card back";
+    card.innerHTML = "";
+    html.innerHTML = "";
   }
+  console.log(count);
   if (currentPlayer === 2) {
     currentPlayer = 0;
   }
@@ -118,6 +125,7 @@ function turn(e) {
     result();
     backTimer = setTimeout(function () {
       alert(`終了です。${result()}`);
+      location.reload();
     }, 500);
   }
 }
